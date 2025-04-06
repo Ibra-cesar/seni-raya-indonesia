@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Indonesian art inspired colors
+				batik: {
+					brown: '#8B4513',
+					red: '#A52A2A',
+					gold: '#D4AF37',
+					cream: '#FFF8DC',
+					teal: '#008080'
 				}
 			},
 			borderRadius: {
