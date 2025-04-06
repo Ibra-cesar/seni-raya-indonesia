@@ -11,6 +11,9 @@ import AuthCallback from "./pages/AuthCallback";
 import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
 import NotFound from "./pages/NotFound";
+import Marketplace from "./pages/Marketplace";
+import Exhibitions from "./pages/Exhibitions";
+import Artists from "./pages/Artists";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +30,9 @@ const App = () => (
             <Route path="/auth/callback" element={<AuthCallback />} />
             <Route path="/checkout/:orderId" element={<Checkout />} />
             <Route path="/order-confirmation" element={<OrderConfirmation />} />
+            <Route path="/marketplace" element={<Marketplace />} />
+            <Route path="/exhibitions" element={<Exhibitions />} />
+            <Route path="/artists" element={<Artists />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
