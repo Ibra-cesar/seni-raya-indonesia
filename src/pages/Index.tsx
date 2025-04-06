@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import FeaturedArtworks from '@/components/FeaturedArtworks';
@@ -7,8 +8,12 @@ import Footer from '@/components/Footer';
 import ExhibitionCard from '@/components/ExhibitionCard';
 import ArtistCard from '@/components/ArtistCard';
 import { Button } from "@/components/ui/button";
+import { useAuth } from '@/contexts/AuthContext';
 
 const Index = () => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  
   const upcomingExhibitions = [
     {
       id: '1',
@@ -116,8 +121,12 @@ const Index = () => {
               Connect with artists, collectors, and art enthusiasts. Share your work, discover new talents, and be part of our growing community.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button size="lg" className="bg-batik-brown hover:bg-batik-brown/90">
-                Create Account
+              <Button 
+                size="lg" 
+                className="bg-batik-brown hover:bg-batik-brown/90"
+                onClick={() => navigate('/auth')}
+              >
+                {user ? 'View Your Profile' : 'Create Account'}
               </Button>
               <Button size="lg" variant="outline">
                 Learn More

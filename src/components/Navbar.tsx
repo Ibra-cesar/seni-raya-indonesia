@@ -3,10 +3,21 @@ import React, { useState } from 'react';
 import { Menu, X, Search, ShoppingBag, User } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from '@/contexts/AuthContext';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleAuthClick = () => {
+    if (user) {
+      signOut();
+    } else {
+      navigate('/auth');
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-border">
@@ -45,7 +56,9 @@ const Navbar = () => {
           <Button variant="ghost" size="icon" className="rounded-full">
             <User className="h-5 w-5" />
           </Button>
-          <Button>Sign In</Button>
+          <Button onClick={handleAuthClick}>
+            {user ? 'Sign Out' : 'Sign In'}
+          </Button>
         </div>
         <Button 
           variant="ghost" 
@@ -81,8 +94,12 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="flex flex-row mt-4 gap-2">
-            <Button variant="outline" className="flex-1">Sign In</Button>
-            <Button className="flex-1">Sign Up</Button>
+            <Button variant="outline" className="flex-1" onClick={handleAuthClick}>
+              {user ? 'Sign Out' : 'Sign In'}
+            </Button>
+            {!user && (
+              <Button className="flex-1" onClick={() => navigate('/auth')}>Sign Up</Button>
+            )}
           </div>
         </div>
       )}
